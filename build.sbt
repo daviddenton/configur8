@@ -4,11 +4,11 @@ name := "configur8"
 
 description := "Typesafe(!) configuration"
 
-version := "0.0.2"
+version := "0.0.3"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.5"
 
-crossScalaVersions := Seq("2.11.4", "2.10.5")
+crossScalaVersions := Seq("2.10.4", "2.11.5")
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 
