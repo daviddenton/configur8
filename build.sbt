@@ -7,7 +7,7 @@ organization := orgName
 
 name := projectName
 
-description := "Typesafe(!) configuration"
+description := "Nano-library which provides the ability to define typesafe (!) Configuration templates for applications"
 
 scalaVersion := "2.11.5"
 
