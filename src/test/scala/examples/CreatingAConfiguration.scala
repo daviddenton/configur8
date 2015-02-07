@@ -6,6 +6,7 @@ import io.github.daviddenton.configur8.{ConfigurationTemplate, Property}
 
 import scala.util.Try
 
+// Run me!
 object CreatingAConfiguration extends App {
 
   val USER = Property.string("USER")
@@ -16,11 +17,11 @@ object CreatingAConfiguration extends App {
   val UNKNOWN = Property.string("UNKNOWN")
 
   val configTemplate = ConfigurationTemplate()
-    .requiring(USER) // supplied by the environment
-    .requiring(RUNTIME) // supplied by the VM
-    .withProp(AGE, 0) // defaulting
-    .requiring(TITLE) // requires overriding
-    .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property
+    .requiring(USER) // will be supplied by the environment
+    .requiring(RUNTIME) // will be supplied by the VM
+    .withProp(AGE, 0) // falls back to a default value
+    .requiring(TITLE) // no value - requires overriding
+    .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property with default
 
   println("Attempt to build an incomplete config: " + Try(configTemplate.reify()))
 
