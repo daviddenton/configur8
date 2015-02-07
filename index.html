@@ -1,53 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Configur8 : ">
+    <title>Configur8 by daviddenton</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Configur8</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1>Configur8</h1>
+        <p></p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/daviddenton/configur8">View on GitHub</a>
+        <p class="view"><a href="https://github.com/daviddenton/configur8">View the Project on GitHub <small>daviddenton/configur8</small></a></p>
 
-          <h1 id="project_title">Configur8</h1>
-          <h2 id="project_tagline"></h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/daviddenton/configur8/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/daviddenton/configur8/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+        <ul>
+          <li><a href="https://github.com/daviddenton/configur8/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/daviddenton/configur8/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/daviddenton/configur8">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h1>
-<a id="configur8------" class="anchor" href="#configur8------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configur8 <a href="https://bintray.com/daviddenton/maven/configur8/_latestVersion"> <img src="https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg" alt="Download"> </a> <a href="https://bintray.com/daviddenton/maven/configur8/view?source=watch"> <img src="https://www.bintray.com/docs/images/bintray_badge_color.png" alt="Watch"> </a>
+<a id="configur8-------" class="anchor" href="#configur8-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configur8 <a href="https://travis-ci.org/daviddenton/configur8"><img src="https://travis-ci.org/daviddenton/configur8.svg" alt="Build Status"></a> <a href="https://coveralls.io/r/daviddenton/configur8?branch=master"><img src="https://coveralls.io/repos/daviddenton/configur8/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://bintray.com/daviddenton/maven/configur8/_latestVersion"><img src="https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg" alt="Download"> </a> <a href="https://bintray.com/daviddenton/maven/configur8/view?source=watch"> <img src="https://www.bintray.com/docs/images/bintray_badge_color.png" alt="Watch"> </a>
 </h1>
 
-<p>Micro-library which provides the ability to define Configuration templates for applications.</p>
-      </section>
-    </div>
+<p>Nano-library which provides the ability to define typesafe (!) Configuration templates for applications.</p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Configur8 maintained by <a href="https://github.com/daviddenton">daviddenton</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+<h3>
+<a id="concept" class="anchor" href="#concept" aria-hidden="true"><span class="octicon octicon-link"></span></a>Concept:</h3>
+
+<p>A <code>Configuration</code> is a set of named and typed <code>Property</code> instances, which are defined using a  <code>ConfigurationTemplate</code>.
+Each defined Property can be set with a default value, or be blank with a requirement to be overridden. At runtime, the template is <code>reified</code> into a concrete <code>Configuration</code> object, but if any properties are missing this process will throw a <code>Misconfiguration</code> error.</p>
+
+<p>Assuming that the reification process is successful, property values can be retrieved in an (actually) type-safe manner, and are applied in the following descending order of precedence:</p>
+
+<ol>
+<li>Named environment property</li>
+<li>JVM system property</li>
+<li>Default value</li>
+</ol>
+
+<h3>
+<a id="get-it" class="anchor" href="#get-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it:</h3>
+
+<p>Add the following resolver and dependency to <code>build.sbt</code>:</p>
+
+<div class="highlight highlight-scala"><pre>resolvers <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>JCenter<span class="pl-pds">"</span></span> at <span class="pl-s1"><span class="pl-pds">"</span>https://jcenter.bintray.com<span class="pl-pds">"</span></span>
+libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>io.github.daviddenton<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s1"><span class="pl-pds">"</span>configur8<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s1"><span class="pl-pds">"</span>1.0.0<span class="pl-pds">"</span></span></pre></div>
+
+<h2>
+<a id="see-it" class="anchor" href="#see-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>See it:</h2>
+
+<p>See the <a href="https://github.com/daviddenton/configur8/tree/master/src/test/scala/examples">example code</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/daviddenton">daviddenton</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
-
   </body>
 </html>
