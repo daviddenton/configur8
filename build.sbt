@@ -40,6 +40,4 @@ pomExtra :=
       </developer>
     </developers>
 
-pomExtra += <ran/>
-
 seq(bintraySettings: _*)
