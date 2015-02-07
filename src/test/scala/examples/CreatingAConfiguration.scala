@@ -2,11 +2,9 @@ package examples
 
 import java.lang.Integer.parseInt
 
-import io.github.daviddenton.configur8.Configuration.ConfigurationBuilder
-import io.github.daviddenton.configur8.Property
+import io.github.daviddenton.configur8.{ConfigurationTemplate, Property}
 
 import scala.util.Try
-
 
 object CreatingAConfiguration extends App {
 
@@ -17,16 +15,16 @@ object CreatingAConfiguration extends App {
   val PATIENCE_LEVEL = Property.of[Duration]("DURATION", Duration(_), d => d.describe)
   val UNKNOWN = Property.string("UNKNOWN")
 
-  val configTemplate = ConfigurationBuilder()
+  val configTemplate = ConfigurationTemplate()
     .requiring(USER) // supplied by the environment
     .requiring(RUNTIME) // supplied by the VM
     .withProp(AGE, 0) // defaulting
     .requiring(TITLE) // requires overriding
     .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property
 
-  println("Attempt to build an incomplete config: " + Try(configTemplate.build))
+  println("Attempt to build an incomplete config: " + Try(configTemplate.reify()))
 
-  val config = configTemplate.withProp(TITLE, Title("Dr")).build
+  val config = configTemplate.withProp(TITLE, Title("Dr")).reify()
 
   println(s"Attempt to get '$UNKNOWN' property: ${Try(config.valueOf(UNKNOWN))}")
   println(s"The '$TITLE' supplied by the user is: ${config.valueOf(TITLE)}")

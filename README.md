@@ -3,13 +3,21 @@ Configur8 [![Build Status](https://travis-ci.org/daviddenton/configur8.svg)](htt
 
 Nano-library which provides the ability to define typesafe (!) Configuration templates for applications.
 
+###Concept:
+A ```Configuration``` is a set of named and typed ```Property``` instances, which are defined using a  ```ConfigurationTemplate```.
+Each defined Property can be set with a default value, or be blank with a requirement to be overridden. At runtime, the template is ```reified``` into a concrete ```Configuration``` object, but if any properties are missing this process will throw a ```Misconfiguration``` error.
+
+Assuming that the reification process is successful, property values can be retrieved in an (actually) type-safe manner, and are applied in the following descending order or precedence:
+1. Named environment property
+2. JVM system property
+3. Default value
+
 ###Get it:
 Add the following resolver and dependency to build.sbt:
 ```scala
 resolvers += "JCenter" at "https://jcenter.bintray.com"
-
 libraryDependencies += "io.github.daviddenton" %% "configur8" % "0.0.7"
 ```
 
-###Use it:
-See the [example code](https://github.com/daviddenton/configur8/tree/master/src/test/scala/examples)
+##See it:
+See the [example code](https://github.com/daviddenton/configur8/tree/master/src/test/scala/examples).
