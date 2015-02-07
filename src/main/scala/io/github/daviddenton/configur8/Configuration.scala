@@ -10,15 +10,13 @@ object Configuration {
 
   private def throwUp(message: String, name: String) = () => throw new Misconfiguration(message + " '" + name + "'")
 
-  class Misconfiguration(message: String) extends RuntimeException(message)
-
   case class ConfigurationBuilder private(settings: Map[String, () => String]) {
 
     private def defaultFor(name: String): String = settings(name)()
 
     private def reify(name: String): (String, String) = (name, Properties.envOrNone(name).getOrElse(Properties.propOrNone(name).getOrElse(defaultFor(name))))
 
-    def withProp[T](prop: Property[T], value: T): ConfigurationBuilder = ConfigurationBuilder(settings + (prop.name -> value.toString))
+    def withProp[T](prop: Property[T], value: T): ConfigurationBuilder = ConfigurationBuilder(settings + (prop.name -> (() => prop.serialize(value))))
 
     def requiring[T](prop: Property[T]): ConfigurationBuilder = ConfigurationBuilder(settings + (prop.name -> throwUp("No value supplied for key", prop.name)))
 

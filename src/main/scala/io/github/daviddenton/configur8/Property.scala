@@ -1,6 +1,8 @@
 package io.github.daviddenton.configur8
 
-case class Property[T] private(name: String, deserialize: (String => T), serialize: (T => String))
+case class Property[T] private(name: String, deserialize: (String => T), serialize: (T => String)) {
+  override def toString = name
+}
 
 object Property {
   def of[T](name: String, deserialize: String => T, serialize: (T => String) = (i: T) => i.toString): Property[T] = Property[T](name, deserialize, serialize)

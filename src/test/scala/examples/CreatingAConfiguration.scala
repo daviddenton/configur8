@@ -1,5 +1,7 @@
 package examples
 
+import java.lang.Integer.parseInt
+
 import io.github.daviddenton.configur8.Configuration.ConfigurationBuilder
 import io.github.daviddenton.configur8.Property
 
@@ -13,6 +15,7 @@ object CreatingAConfiguration extends App {
   val TITLE = Property.of("TITLE", Title)
   val RUNTIME = Property.string("java.runtime.version")
   val PATIENCE_LEVEL = Property.of[Duration]("DURATION", Duration(_), d => d.describe)
+  val UNKNOWN = Property.string("UNKNOWN")
 
   val configTemplate = ConfigurationBuilder()
     .requiring(USER) // supplied by the environment
@@ -21,14 +24,16 @@ object CreatingAConfiguration extends App {
     .requiring(TITLE) // requires overriding
     .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property
 
-  println("when I attempt to build an incomplete config: " + Try(configTemplate.build))
+  println("Attempt to build an incomplete config: " + Try(configTemplate.build))
 
   val config = configTemplate.withProp(TITLE, Title("Dr")).build
 
-  println("the user I got from the environment is: " + config.valueOf(USER))
-  println("the runtime I got from the system is: " + config.valueOf(RUNTIME))
-  println("the default value for AGE: " + config.valueOf(AGE))
-  println("type-safe retrieval of a property got a " + config.valueOf(PATIENCE_LEVEL))
+  println(s"Attempt to get '$UNKNOWN' property: ${Try(config.valueOf(UNKNOWN))}")
+  println(s"The '$TITLE' supplied by the user is: ${config.valueOf(TITLE)}")
+  println(s"The '$USER' supplied by the environment is: ${config.valueOf(USER)}")
+  println(s"The '$RUNTIME' supplied by the System is: ${config.valueOf(RUNTIME)}")
+  println(s"The '$AGE' fell back to the default value of: ${config.valueOf(AGE)}")
+  println(s"Type-safe retrieval of '$PATIENCE_LEVEL': ${config.valueOf(PATIENCE_LEVEL)}")
 }
 
 // simple wrapper type which self describes the wrapper
@@ -42,5 +47,5 @@ case class Duration(seconds: Int) {
 }
 
 object Duration {
-  def apply(value: String): Duration = Duration(value.replace("s", ""))
+  def apply(value: String): Duration = Duration(parseInt(value.replace("s", "")))
 }

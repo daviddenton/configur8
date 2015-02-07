@@ -1,6 +1,6 @@
 package io.github.daviddenton.configur8
 
-import io.github.daviddenton.configur8.Configuration.{ConfigurationBuilder, Misconfiguration}
+import io.github.daviddenton.configur8.Configuration.ConfigurationBuilder
 import io.github.daviddenton.configur8.Property._
 import org.scalatest.{FunSpec, ShouldMatchers}
 
