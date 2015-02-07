@@ -5,7 +5,7 @@ Nano-library which provides the ability to define typesafe (!) Configuration tem
 
 ###Get it:
 Add the following resolver and dependency to build.sbt:
-```scala
+```scala    
 resolvers += "JCenter" at "https://jcenter.bintray.com"
 
 libraryDependencies += "io.github.daviddenton" %% "configur8" % "0.0.7"
