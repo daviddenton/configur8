@@ -14,7 +14,7 @@ Assuming that the reification process is successful, property values can be retr
 3. Default value
 
 ###Get it:
-Add the following resolver and dependency to build.sbt:
+Add the following resolver and dependency to ```build.sbt```:
 ```scala
 resolvers += "JCenter" at "https://jcenter.bintray.com"
 libraryDependencies += "io.github.daviddenton" %% "configur8" % "0.0.7"
