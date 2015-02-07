@@ -4,7 +4,7 @@ name := "configur8"
 
 description := "Typesafe(!) configuration"
 
-version := "0.0.3"
+version := "0.0.5"
 
 scalaVersion := "2.11.5"
 
