@@ -1,4 +1,3 @@
-Configur8
+Configur8 [ ![Download](https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg) ](https://bintray.com/daviddenton/maven/configur8/_latestVersion) [ ![Watch](https://www.bintray.com/docs/images/bintray_badge_color.png) ](https://bintray.com/daviddenton/maven/configur8/view?source=watch)
 =========
-[ ![Download](https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg) ](https://bintray.com/daviddenton/maven/configur8/_latestVersion)
-[ ![Watch](https://www.bintray.com/docs/images/bintray_badge_color.png) ](https://bintray.com/daviddenton/maven/configur8/view?source=watch)
+
