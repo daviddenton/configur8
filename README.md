@@ -8,6 +8,7 @@ A ```Configuration``` is a set of named and typed ```Property``` instances, whic
 Each defined Property can be set with a default value, or be blank with a requirement to be overridden. At runtime, the template is ```reified``` into a concrete ```Configuration``` object, but if any properties are missing this process will throw a ```Misconfiguration``` error.
 
 Assuming that the reification process is successful, property values can be retrieved in an (actually) type-safe manner, and are applied in the following descending order or precedence:
+
 1. Named environment property
 2. JVM system property
 3. Default value
