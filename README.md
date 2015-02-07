@@ -20,5 +20,5 @@ resolvers += "JCenter" at "https://jcenter.bintray.com"
 libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.0.0"
 ```
 
-##See it:
+###See it:
 See the [example code](https://github.com/daviddenton/configur8/tree/master/src/test/scala/examples).
