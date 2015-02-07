@@ -33,4 +33,4 @@ pomExtra :=
       </developer>
     </developers>
 
-seq(bintraySettings: _*)
+Seq(bintraySettings: _*)
