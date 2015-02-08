@@ -1,6 +1,6 @@
-package io.github.daviddenton.configur8
+package io.github.configur8
 
-import io.github.daviddenton.configur8.Misconfiguration._
+import io.github.configur8.Misconfiguration.throwUp
 
 import scala.util.Properties
 

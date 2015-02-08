@@ -1,4 +1,4 @@
-package io.github.daviddenton.configur8
+package io.github.configur8
 
 /**
  * A typed property which can be serialized and deserialized to a string value

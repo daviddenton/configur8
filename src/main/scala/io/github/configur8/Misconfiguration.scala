@@ -1,4 +1,4 @@
-package io.github.daviddenton.configur8
+package io.github.configur8
 
 /**
  * Thrown when a problem occurs in creating a Configuration or retrieving a Property

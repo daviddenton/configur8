@@ -1,6 +1,6 @@
-package io.github.daviddenton.configur8
+package io.github.configur8
 
-import io.github.daviddenton.configur8.Misconfiguration.throwUp
+import io.github.configur8.Misconfiguration.throwUp
 
 /**
  * A Configuration object is a successfully reified container for all of the properties that were defined.

@@ -2,7 +2,7 @@ package examples
 
 import java.lang.Integer.parseInt
 
-import io.github.daviddenton.configur8.{ConfigurationTemplate, Property}
+import io.github.configur8.{ConfigurationTemplate, Property}
 
 import scala.util.Try
 

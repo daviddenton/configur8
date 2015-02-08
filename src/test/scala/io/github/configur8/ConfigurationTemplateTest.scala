@@ -1,8 +1,8 @@
-package io.github.daviddenton.configur8
+package io.github.configur8
 
 import java.lang.Integer._
 
-import io.github.daviddenton.configur8.Property._
+import io.github.configur8.Property._
 import org.scalatest.{FunSpec, ShouldMatchers}
 
 class ConfigurationTemplateTest extends FunSpec with ShouldMatchers {
