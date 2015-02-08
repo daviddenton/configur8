@@ -18,7 +18,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 licenses +=("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0"))
 
 pomExtra :=
-  <url>http://daviddenton.github.io/{projectName}</url>
+  <url>http://{projectName}.github.io/</url>
     <scm>
       <url>git@github.com:daviddenton/{projectName}.git</url>
       <connection>scm:git:git@github.com:daviddenton/{projectName}.git</connection>
