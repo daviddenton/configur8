@@ -10,16 +10,25 @@ class PropertyTest extends FunSpec with ShouldMatchers {
 
   case class Doubling(value: Int)
 
-  describe("Property") {
+  describe("Defined property of type") {
+    itAdheresToStandardTests("default", Property.of("name", i => Standard(Integer.parseInt(i))), Standard(99))
+    itAdheresToStandardTests("custom", Property.of("name", i => Doubling(Integer.parseInt(i) / 2), (t: Doubling) => (t.value * 2).toString), Doubling(99))
+    itAdheresToStandardTests("boolean", Property.boolean("name"), true)
+    itAdheresToStandardTests("string", Property.string("name"), "testValue")
+    itAdheresToStandardTests("char", Property.char("name"), 'C')
+    itAdheresToStandardTests("integer", Property.integer("name"), Int.MaxValue)
+    itAdheresToStandardTests("long", Property.long("name"), Long.MaxValue)
+  }
 
-    it("default round-tripping is possible") {
-      val customProp = Property.of("name", i => Standard(Integer.parseInt(i)))
-      customProp.deserialize(customProp.serialize(Standard(99))) should be === Standard(99)
-    }
 
-    it("custom round-tripping is possible") {
-      val customProp = Property.of("name", i => Doubling(Integer.parseInt(i) / 2), (t: Doubling) => (t.value * 2).toString)
-      customProp.deserialize(customProp.serialize(Doubling(99))) should be === Doubling(99)
+  private def itAdheresToStandardTests[T](name: String, prop: Property[T], testValue: T) = {
+    describe(name) {
+      it("round-tripping to string and back supported") {
+        prop.deserialize(prop.serialize(testValue)) should be === testValue
+      }
+      it("toString is just the name") {
+        prop.toString should be === "name"
+      }
     }
   }
 }
