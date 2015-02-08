@@ -17,7 +17,7 @@ Assuming that the reification process is successful, property values can be retr
 Add the following resolver and dependency to ```build.sbt```:
 ```scala
 resolvers += "JCenter" at "https://jcenter.bintray.com"
-libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.0.0"
+libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.0.1"
 ```
 
 ###See it:
