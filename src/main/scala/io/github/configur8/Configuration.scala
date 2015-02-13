@@ -5,7 +5,14 @@ import io.github.configur8.Misconfiguration.throwUp
 /**
  * A Configuration object is a successfully reified container for all of the properties that were defined.
  */
-case class Configuration protected[configur8](settings: Map[String, String]) {
+case class Configuration protected[configur8](private val propertySettings: Map[Property[_], String]) {
+
+  /**
+   * Public representation of the the settings
+   */
+  lazy val settings: Map[String, String] = {
+    propertySettings.map(pv => (pv._1.name, pv._2)).toMap
+  }
 
   /**
    * Retrieve a property value which has been deserialized from it's string form
@@ -13,7 +20,7 @@ case class Configuration protected[configur8](settings: Map[String, String]) {
    * @tparam Type of the parameter
    * @return The deserialized parameter as an instance of the correct type
    */
-  def valueOf[T](prop: Property[T]): T = prop.deserialize.apply(settings.getOrElse(prop.name, throwUp("Unknown configuration key", prop.name).apply()))
+  def valueOf[T](prop: Property[T]): T = prop.deserialize.apply(propertySettings.getOrElse(prop, throwUp("Unknown configuration key", prop.name).apply()))
 }
 
 

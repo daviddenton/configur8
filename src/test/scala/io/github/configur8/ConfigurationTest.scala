@@ -8,6 +8,7 @@ import org.scalatest.{FunSpec, ShouldMatchers}
 class ConfigurationTest extends FunSpec with ShouldMatchers {
 
   private val intProperty = integer("anInteger")
+  private val stringProperty = string("aString")
 
   case class SimpleWrapperType(value: String) {
     override def toString: String = value
@@ -54,6 +55,11 @@ class ConfigurationTest extends FunSpec with ShouldMatchers {
         val property = Property.of[CustomSerializedType]("customSerialize", CustomSerializedType(_), c => c.describe)
         ConfigurationTemplate().withProp(property, CustomSerializedType("!!!5!!!")).reify().valueOf(property) should be === CustomSerializedType("!!!5!!!")
       }
+    }
+
+    it("exposes a map of the properties") {
+      val settings = ConfigurationTemplate().withProp(intProperty, 1).withProp(stringProperty, "42").reify().settings
+      settings should be === Map(intProperty.name -> "1", stringProperty.name -> "42")
     }
   }
 }
