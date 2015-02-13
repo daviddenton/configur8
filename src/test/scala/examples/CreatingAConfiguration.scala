@@ -2,7 +2,7 @@ package examples
 
 import java.lang.Integer.parseInt
 
-import io.github.configur8.{ConfigurationTemplate, Property}
+import io.github.configur8.{ConfigurationTemplate, ExposeMode, Property}
 
 import scala.util.Try
 
@@ -12,6 +12,7 @@ object CreatingAConfiguration extends App {
   val USER = Property.string("USER")
   val AGE = Property.integer("AGE")
   val TITLE = Property.of("TITLE", Title)
+  val PASSWORD = Property.string("PASSWORD", ExposeMode.Private)
   val RUNTIME = Property.string("java.runtime.version")
   val PATIENCE_LEVEL = Property.of[Duration]("DURATION", Duration(_), d => d.describe)
   val UNKNOWN = Property.string("UNKNOWN")
@@ -20,6 +21,7 @@ object CreatingAConfiguration extends App {
     .requiring(USER) // will be supplied by the environment
     .requiring(RUNTIME) // will be supplied by the VM
     .withProp(AGE, 0) // falls back to a default value
+    .withProp(PASSWORD, "my_secret_value") // falls back to a default value
     .requiring(TITLE) // no value - requires overriding
     .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property with default
 
@@ -32,7 +34,9 @@ object CreatingAConfiguration extends App {
   println(s"The '$USER' supplied by the environment is: ${config.valueOf(USER)}")
   println(s"The '$RUNTIME' supplied by the System is: ${config.valueOf(RUNTIME)}")
   println(s"The '$AGE' fell back to the default value of: ${config.valueOf(AGE)}")
+  println(s"The '$PASSWORD' fell back to the default value of: ${config.valueOf(PASSWORD)}")
   println(s"Type-safe retrieval of '$PATIENCE_LEVEL': ${config.valueOf(PATIENCE_LEVEL)}")
+  println(s"Publicly visible settings hides the private values: ${config.settings}")
 }
 
 // simple wrapper type which self describes the wrapper
