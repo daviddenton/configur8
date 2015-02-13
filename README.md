@@ -16,7 +16,7 @@ Assuming that the reification process is successful, property values can be retr
 ###Get it:
 Add the following dependency to ```build.sbt```:
 ```scala
-libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.0.2"
+libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.0"
 ```
 
 ###See it:
