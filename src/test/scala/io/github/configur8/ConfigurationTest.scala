@@ -58,8 +58,9 @@ class ConfigurationTest extends FunSpec with ShouldMatchers {
     }
 
     it("exposes a map of the properties") {
-      val settings = ConfigurationTemplate().withProp(intProperty, 1).withProp(stringProperty, "42").reify().settings
-      settings should be === Map(intProperty.name -> "1", stringProperty.name -> "42")
+      val privateStringProp = Property.string("aString", ExposeMode.Private)
+      val settings = ConfigurationTemplate().withProp(intProperty, 1).withProp(privateStringProp, "42").reify().settings
+      settings should be === Map(intProperty.name -> "1", privateStringProp.name -> "***")
     }
   }
 }

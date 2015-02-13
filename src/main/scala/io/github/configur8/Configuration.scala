@@ -10,9 +10,11 @@ case class Configuration protected[configur8](private val propertySettings: Map[
   /**
    * Public representation of the the settings
    */
-  lazy val settings: Map[String, String] = {
-    propertySettings.map(pv => (pv._1.name, pv._2)).toMap
-  }
+  lazy val settings: Map[String, String] = propertySettings.map {
+    case (p, v) => {
+      (p.name, p.exposeMode.display(v))
+    }
+  }.toMap
 
   /**
    * Retrieve a property value which has been deserialized from it's string form
