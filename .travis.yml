@@ -3,5 +3,5 @@ scala:
     - 2.10.4
     - 2.11.5
 script:
-    - scala/sbt clean coverage test
-    - scala/sbt coveralls
+    - "cd scala && sbt clean coverage test && cd .."
+    - "cd scala && sbt coveralls && cd .."
