@@ -20,4 +20,4 @@ libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.0"
 ```
 
 ###See it:
-See the [example code](https://github.com/daviddenton/configur8/tree/master/src/test/scala/examples).
+See the [example code](https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples).
