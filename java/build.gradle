@@ -1,0 +1,67 @@
+plugins {
+    id "com.jfrog.bintray" version "1.1"
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+version = '0.0.1'
+group = 'io.github.daviddenton'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourcesJar
+            artifact javadocJar
+        }
+    }
+}
+
+bintray {
+    user = 'daviddenton'
+    key = project.bintrayKey
+
+    publications = ['mavenJava']
+    dryRun = false
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'configur8'
+        desc = 'Nano-library which provides the ability to define typesafe (!) configuration templates for applications.'
+        websiteUrl = 'https://github.com/daviddenton/configur8'
+        issueTrackerUrl = 'https://github.com/daviddenton/configur8/issues'
+        vcsUrl = 'https://github.com/daviddenton/configur8.git'
+        licenses = ['Apache-2.0']
+        labels = []
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            mavenCentralSync {
+                user = 'daviddenton'
+                password = project.sonatypePassword
+            }
+        }
+    }
+}
