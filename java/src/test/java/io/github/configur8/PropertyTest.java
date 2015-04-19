@@ -57,15 +57,3 @@ public class PropertyTest {
         assertThat(name, prop.toString(), equalTo(prop.name));
     }
 }
-
-/*
-    itAdheresToStandardTests("custom", Property.of("name", i => Doubling(Integer.parseInt(i) / 2), (t: Doubling) => (t.value * 2).toString), Doubling(99))
-    itAdheresToStandardTests("boolean", Property.boolean("name"), true)
-    itAdheresToStandardTests("string", Property.string("name"), "testValue")
-    itAdheresToStandardTests("char", Property.char("name"), 'C')
-    itAdheresToStandardTests("integer", Property.integer("name"), Int.MaxValue)
-    itAdheresToStandardTests("long", Property.long("name"), Long.MaxValue)
-  }
-
-
- */
