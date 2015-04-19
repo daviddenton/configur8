@@ -11,12 +11,22 @@ public interface ExposeMode {
     /**
      * Displays input value. Use for public property values
      */
-    ExposeMode Public = value -> value;
+    ExposeMode Public = new ExposeMode() {
+        @Override
+        public String display(String value) {
+            return value;
+        }
+    };
 
     /**
      * Conceals value with '*' characters. Use for Passwords and other sensitive values
      */
-    ExposeMode Private = value -> IntStream.range(0, value.length()).mapToObj((c) -> "*").collect(Collectors.joining("*"));
+    ExposeMode Private = new ExposeMode() {
+        @Override
+        public String display(String value) {
+            return IntStream.range(0, value.length()).mapToObj((c) -> "*").collect(Collectors.joining("*"));
+        }
+    };
 
     /**
      * converts a value to how it should be exposed publicly

@@ -29,24 +29,24 @@ public class Configuration {
         return settings;
     }
 
-    public static class ConfigurationBuilder {
+    public static class ConfigurationTemplate {
 
         private final Map<String, Supplier<String>> settings = new HashMap<>();
 
-        public <T> ConfigurationBuilder with(Property<T> prop, T value) {
+        public <T> ConfigurationTemplate withProp(Property<T> prop, T value) {
             settings.put(prop.name, value::toString);
             return this;
         }
 
-        public <T> ConfigurationBuilder requiring(Property<T> prop) {
+        public <T> ConfigurationTemplate requiring(Property<T> prop) {
             settings.put(prop.name, () -> {
                 throw new Misconfiguration("No value supplied for key '" + prop.name + "'");
             });
             return this;
         }
 
-        public static ConfigurationBuilder aConfiguration() {
-            return new ConfigurationBuilder();
+        public static ConfigurationTemplate configurationTemplate() {
+            return new ConfigurationTemplate();
         }
 
         public Configuration reify() {
