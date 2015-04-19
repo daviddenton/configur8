@@ -17,8 +17,21 @@ public class Property<T> {
         this.exposeMode = exposeMode;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public static <T> Property<T> of(String name, Deserialiser<T> deserialise, Serialiser<T> serialise) {
         return of(name, deserialise, serialise, ExposeMode.Public);
+    }
+
+    public static <T> Property<T> of(String name, Deserialiser<T> deserialise) {
+        return of(name, deserialise, Object::toString, ExposeMode.Public);
+    }
+
+    public static <T> Property<T> of(String name, Deserialiser<T> deserialise, ExposeMode exposeMode) {
+        return of(name, deserialise, Object::toString, exposeMode);
     }
 
     public static <T> Property<T> of(String name, Deserialiser<T> deserialise, Serialiser<T> serialise, ExposeMode exposeMode) {
