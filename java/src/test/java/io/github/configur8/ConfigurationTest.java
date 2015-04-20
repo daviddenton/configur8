@@ -4,7 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static io.github.configur8.Configuration.ConfigurationTemplate.configurationTemplate;
+import static io.github.configur8.ConfigurationTemplate.configurationTemplate;
 import static io.github.configur8.Property.string;
 import static java.util.Collections.singletonMap;
 import static org.hamcrest.MatcherAssert.assertThat;

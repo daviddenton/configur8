@@ -1,6 +1,7 @@
 package examples;
 
 import io.github.configur8.Configuration;
+import io.github.configur8.ConfigurationTemplate;
 import io.github.configur8.ExposeMode;
 import io.github.configur8.Property;
 
@@ -8,7 +9,7 @@ import java.util.function.Supplier;
 
 import static examples.Duration.duration;
 import static examples.Title.title;
-import static io.github.configur8.Configuration.ConfigurationTemplate.configurationTemplate;
+import static io.github.configur8.ConfigurationTemplate.configurationTemplate;
 import static java.lang.Integer.parseInt;
 
 public class CreatingAConfiguration {
@@ -39,7 +40,7 @@ object Duration {
         Property<Duration> PATIENCE_LEVEL = Property.of("DURATION", (String i) -> duration(parseInt(i)), Duration::describe);
         Property<String> UNKNOWN = Property.string("UNKNOWN");
 
-        Configuration.ConfigurationTemplate configTemplate = configurationTemplate()
+        ConfigurationTemplate configTemplate = configurationTemplate()
                 .requiring(USER) // will be supplied by the environment
                 .requiring(RUNTIME) // will be supplied by the VM
                 .withProp(AGE, 2) // falls back to a default value
