@@ -4,16 +4,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.Collections;
-
 import static io.github.configur8.Configuration.ConfigurationTemplate.configurationTemplate;
 import static io.github.configur8.Property.string;
+import static java.util.Collections.singletonMap;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ConfigurationTest {
-
 
     private final Property<String> userProperty = Property.string("bob");
     private final Property<String> envProperty = string("USER");
@@ -37,9 +35,10 @@ public class ConfigurationTest {
 
     @Test
     public void usesSystemPropertyValueInPreferenceToDefault() throws Exception {
-        System.setProperty(userProperty.name, "NOTTHEENVUSER");
-        Configuration configuration = configurationTemplate().requiring(userProperty).reify();
-        assertThat(configuration.valueOf(userProperty), equalTo(System.getProperty(userProperty.name)));
+        Property<String> someSystemProperty = Property.string("bilbo");
+        System.setProperty(someSystemProperty.name, "NOTTHEENVUSER");
+        Configuration configuration = configurationTemplate().requiring(someSystemProperty).reify();
+        assertThat(configuration.valueOf(someSystemProperty), equalTo(System.getProperty(someSystemProperty.name)));
     }
 
     @Test
@@ -56,7 +55,10 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void exposesMapOfProperties() throws Exception {
-        assertThat(configurationTemplate().withProp(userProperty, "VALUE").reify().settings(), equalTo(Collections.singletonMap(userProperty.name, "VALUE")));
+    public void exposesMapOfPropertiesUsingExposeMode() throws Exception {
+        Property<String> privateProperty = Property.string("hello", ExposeMode.Private);
+        assertThat(configurationTemplate()
+                .withProp(privateProperty, "VALUE")
+                .reify().settings(), equalTo(singletonMap(privateProperty.name, "*********")));
     }
 }
