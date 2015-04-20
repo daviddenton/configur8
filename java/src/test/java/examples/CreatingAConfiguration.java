@@ -42,7 +42,7 @@ object Duration {
         Configuration.ConfigurationTemplate configTemplate = configurationTemplate()
                 .requiring(USER) // will be supplied by the environment
                 .requiring(RUNTIME) // will be supplied by the VM
-                .withProp(AGE, 0) // falls back to a default value
+                .withProp(AGE, 2) // falls back to a default value
                 .withProp(PASSWORD, "my_secret_value") // falls back to a default value
                 .requiring(TITLE) // no value - requires overriding
                 .withProp(PATIENCE_LEVEL, Duration.duration(10)); // custom type property with default
@@ -51,14 +51,14 @@ object Duration {
 
         Configuration config = configTemplate.withProp(TITLE, title("Dr")).reify();
 
-        System.out.println("Attempt to get '$UNKNOWN' property: "+ tryIt(() -> config.valueOf(UNKNOWN)));
-        System.out.println("The '$TITLE' supplied by the user is: ${config.valueOf(TITLE)}");
-        System.out.println("The '$USER' supplied by the environment is: ${config.valueOf(USER)}");
-        System.out.println("The '$RUNTIME' supplied by the System is: ${config.valueOf(RUNTIME)}");
-        System.out.println("The '$AGE' fell back to the default value of: ${config.valueOf(AGE)}");
-        System.out.println("The '$PASSWORD' fell back to the default value of: ${config.valueOf(PASSWORD)}");
-        System.out.println("Type-safe retrieval of '$PATIENCE_LEVEL': ${config.valueOf(PATIENCE_LEVEL)}");
-        System.out.println("Publicly visible settings hides the private values: ${config.settings}");
+        System.out.println("Attempt to get 'UNKNOWN' property: " + tryIt(() -> config.valueOf(UNKNOWN)));
+        System.out.println("The 'TITLE' supplied by the user is: " + config.valueOf(TITLE));
+        System.out.println("The 'USER' supplied by the environment is: " + config.valueOf(USER));
+        System.out.println("The 'RUNTIME' supplied by the System is: " + config.valueOf(USER));
+        System.out.println("The 'AGE' fell back to the default value of: " + config.valueOf(AGE));
+        System.out.println("The 'PASSWORD' fell back to the default value of: " + config.valueOf(PASSWORD));
+        System.out.println("Type-safe retrieval of 'PATIENCE_LEVEL': " + config.valueOf(PATIENCE_LEVEL));
+        System.out.println("Publicly visible settings hides the private values: " + config.settings());
     }
 
     private static Object tryIt(Supplier supplier) {

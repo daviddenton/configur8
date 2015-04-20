@@ -4,51 +4,59 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static io.github.configur8.Configuration.ConfigurationBuilder.aConfiguration;
+import java.util.Collections;
+
+import static io.github.configur8.Configuration.ConfigurationTemplate.configurationTemplate;
 import static io.github.configur8.Property.string;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ConfigurationTest {
+
+
+    private final Property<String> userProperty = Property.string("bob");
+    private final Property<String> envProperty = string("USER");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void
-    returnsDefaultValueOfKeyIfNoneInTheEnvironment() {
-        Configuration configuration = aConfiguration().with(string("NOT_IN_ENV"), "The value").reify();
-        assertThat(configuration.settings(), hasEntry("NOT_IN_ENV", "The value"));
-        assertThat(configuration.valueOf(string("NOT_IN_ENV")), equalTo("The value"));
-    }
-
-    @Test
-    public void
-    prioritisesEnvironmentValueOverDefault() {
-        Configuration configuration = aConfiguration().with(string("HOME"), "a default").reify();
-        assertThat(configuration.settings(), hasEntry(equalTo("HOME"), not(equalTo("a default"))));
-        assertThat(configuration.valueOf(string("HOME")), not(equalTo("a default")));
-    }
-
-    @Test
-    public void
-    throwsIfNoEnvironmentValueOrDefaultForKey() {
-        Configuration configuration = aConfiguration().reify();
-        assertThat(configuration.settings(), not(hasKey("MISSING")));
-
+    public void blowUpWhenAttemptingToGetAnUnknownProperty() throws Exception {
+        Configuration configuration = configurationTemplate().reify();
         thrown.expectMessage(containsString("MISSING"));
         thrown.expect(Misconfiguration.class);
-
-        configuration.valueOf(string("MISSING"));
+        configuration.valueOf(Property.string("MISSING"));
     }
 
     @Test
-    public void
-    throwsIfRequiredOverrideIsNotSuppliedWhenCallingReify() {
-        Property<String> propertyThatNeedsOverriding = string("REQUIRED_OVERRRIDE");
+    public void usesDefaultValueIfNoOverride() throws Exception {
+        Configuration configuration = configurationTemplate().withProp(userProperty, "bill").reify();
+        assertThat(configuration.valueOf(userProperty), equalTo("bill"));
+    }
 
+    @Test
+    public void usesSystemPropertyValueInPreferenceToDefault() throws Exception {
+        System.setProperty(userProperty.name, "NOTTHEENVUSER");
+        Configuration configuration = configurationTemplate().requiring(userProperty).reify();
+        assertThat(configuration.valueOf(userProperty), equalTo(System.getProperty(userProperty.name)));
+    }
+
+    @Test
+    public void usesEnvironmentValueInPreferenceToASystemProperty() throws Exception {
+        System.setProperty(envProperty.name, "NOTTHEENVUSER");
+        Configuration configuration = configurationTemplate().requiring(envProperty).reify();
+        assertThat(configuration.valueOf(envProperty), equalTo(System.getenv(envProperty.name)));
+    }
+
+    @Test
+    public void throwsIfNoValueIsSuppliedAtAll() {
         thrown.expect(Misconfiguration.class);
+        configurationTemplate().requiring(userProperty).reify();
+    }
 
-        aConfiguration().requiring(propertyThatNeedsOverriding).reify();
+    @Test
+    public void exposesMapOfProperties() throws Exception {
+        assertThat(configurationTemplate().withProp(userProperty, "VALUE").reify().settings(), equalTo(Collections.singletonMap(userProperty.name, "VALUE")));
     }
 }

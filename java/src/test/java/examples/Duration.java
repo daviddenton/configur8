@@ -7,6 +7,11 @@ public class Duration {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "" + value;
+    }
+
     public String describe() {
         return value + "s";
     }
