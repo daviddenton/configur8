@@ -11,10 +11,12 @@ apply plugin: 'java'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
+archivesBaseName = 'configur8'
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = '1.0.2'
+version = '1.0.3'
 group = 'io.github.daviddenton'
 
 dependencies {
@@ -52,6 +54,7 @@ bintray {
     publish = true
     pkg {
         repo = 'maven'
+        dryRun = true
         name = 'configur8'
         desc = 'Nano-library which provides the ability to define typesafe (!) configuration templates for applications.'
         websiteUrl = 'https://github.com/daviddenton/configur8'
