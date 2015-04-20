@@ -27,6 +27,7 @@ public class Property<T> {
      * @param name of the property
      * @param deserialize function
      * @param serialize function
+     * @param <T> type
      * @return The property
      */
     public static <T> Property<T> of(String name, Deserializer<T> deserialize, Serializer<T> serialize) {
@@ -37,6 +38,7 @@ public class Property<T> {
      * Create a Property
      * @param name of the property
      * @param deserialize function
+     * @param <T> type
      * @return The property
      */
     public static <T> Property<T> of(String name, Deserializer<T> deserialize) {
@@ -47,7 +49,8 @@ public class Property<T> {
      * Create a Property
      * @param name of the property
      * @param deserialize function
-     * @param expose mode which determines if the value should be publicly accessible or concealed
+     * @param exposeMode mode which determines if the value should be publicly accessible or concealed
+     * @param <T> type
      * @return The property
      */
     public static <T> Property<T> of(String name, Deserializer<T> deserialize, ExposeMode exposeMode) {
@@ -60,7 +63,8 @@ public class Property<T> {
      * @param name of the property
      * @param deserialize function
      * @param serialize function
-     * @param expose mode which determines if the value should be publicly accessible or concealed
+     * @param exposeMode mode which determines if the value should be publicly accessible or concealed
+     * @param <T> type
      * @return The property
      */
     public static <T> Property<T> of(String name, Deserializer<T> deserialize, Serializer<T> serialize, ExposeMode exposeMode) {

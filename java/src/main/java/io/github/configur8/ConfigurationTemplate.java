@@ -18,8 +18,9 @@ public class ConfigurationTemplate {
 
     /**
      * Set a default or overridden property value to use in the reified Configuration
-     * @param Property definition
-     * @param The typed value to use
+     * @param prop definition
+     * @param value typed value to use
+     * @param <T> type
      * @return A copy of the template with the new property value set
      */
     public <T> ConfigurationTemplate withProp(Property<T> prop, T value) {
@@ -29,7 +30,8 @@ public class ConfigurationTemplate {
 
     /**
      * Set an abstract property that needs to be overridden by another caller before the template can be reified
-     * @param Property definition
+     * @param prop definition
+     * @param <T> type
      * @return A copy of the template with the new abstract property
      */
     public <T> ConfigurationTemplate requiring(Property<T> prop) {

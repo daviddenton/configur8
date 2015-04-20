@@ -14,9 +14,9 @@ public class Configuration {
 
     /**
      * Retrieve a property value which has been deserialized from it's string form
-     * @param Property definition to retrieve
-     * @tparam Type of the parameter
-     * @return The deserialized parameter as an instance of the correct type
+     * @param prop the property to retrieve the value for
+     * @param <T> type
+     * @return value of the property
      */
     public <T> T valueOf(Property<T> prop) {
         if (!settings.containsKey(prop)) {
@@ -27,7 +27,7 @@ public class Configuration {
 
     /**
      * Public representation of the the settings
-     * @return settings
+     * @return settings described as a map with private values hidden
      */
     public Map<String, String> settings() {
         return settings.keySet().stream().collect(toMap(
