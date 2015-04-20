@@ -16,7 +16,7 @@ archivesBaseName = 'configur8'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = '1.1.1'
+version = releaseVersion
 group = 'io.github.daviddenton'
 
 dependencies {
