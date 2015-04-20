@@ -54,7 +54,6 @@ bintray {
     publish = true
     pkg {
         repo = 'maven'
-        dryRun = true
         name = 'configur8'
         desc = 'Nano-library which provides the ability to define typesafe (!) configuration templates for applications.'
         websiteUrl = 'https://github.com/daviddenton/configur8'
