@@ -16,7 +16,7 @@ archivesBaseName = 'configur8'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = '1.0.3'
+version = '1.0.4'
 group = 'io.github.daviddenton'
 
 dependencies {
@@ -64,10 +64,6 @@ bintray {
         publicDownloadNumbers = true
         version {
             name = project.version
-            mavenCentralSync {
-                user = 'daviddenton'
-                password = project.sonatypePassword
-            }
         }
     }
 }
