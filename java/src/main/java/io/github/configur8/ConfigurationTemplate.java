@@ -43,6 +43,7 @@ public class ConfigurationTemplate {
 
     /**
      * Start here...
+     * @return An empty template
      */
     public static ConfigurationTemplate configurationTemplate() {
         return new ConfigurationTemplate();
