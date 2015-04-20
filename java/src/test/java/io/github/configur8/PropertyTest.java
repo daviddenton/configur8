@@ -53,7 +53,7 @@ public class PropertyTest {
     }
 
     private <T> void itAdheresToStandardContract(String name, T testValue, Property<T> prop) {
-        assertThat(name, prop.deserialise.deserialise(prop.serialise.serialise(testValue)), equalTo(testValue));
+        assertThat(name, prop.deserialize.deserialize(prop.serialize.serialize(testValue)), equalTo(testValue));
         assertThat(name, prop.toString(), equalTo(prop.name));
     }
 }

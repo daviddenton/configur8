@@ -6,14 +6,14 @@ package io.github.configur8;
 public class Property<T> {
 
     public final String name;
-    public final Deserialiser<T> deserialise;
-    public final Serialiser<T> serialise;
+    public final Deserializer<T> deserialize;
+    public final Serializer<T> serialize;
     public final ExposeMode exposeMode;
 
-    private Property(String name, Deserialiser<T> deserialise, Serialiser<T> serialise, ExposeMode exposeMode) {
+    private Property(String name, Deserializer<T> deserialize, Serializer<T> serialize, ExposeMode exposeMode) {
         this.name = name;
-        this.deserialise = deserialise;
-        this.serialise = serialise;
+        this.deserialize = deserialize;
+        this.serialize = serialize;
         this.exposeMode = exposeMode;
     }
 
@@ -22,20 +22,20 @@ public class Property<T> {
         return name;
     }
 
-    public static <T> Property<T> of(String name, Deserialiser<T> deserialise, Serialiser<T> serialise) {
-        return of(name, deserialise, serialise, ExposeMode.Public);
+    public static <T> Property<T> of(String name, Deserializer<T> deserialize, Serializer<T> serialize) {
+        return of(name, deserialize, serialize, ExposeMode.Public);
     }
 
-    public static <T> Property<T> of(String name, Deserialiser<T> deserialise) {
-        return of(name, deserialise, Object::toString, ExposeMode.Public);
+    public static <T> Property<T> of(String name, Deserializer<T> deserialize) {
+        return of(name, deserialize, Object::toString, ExposeMode.Public);
     }
 
-    public static <T> Property<T> of(String name, Deserialiser<T> deserialise, ExposeMode exposeMode) {
-        return of(name, deserialise, Object::toString, exposeMode);
+    public static <T> Property<T> of(String name, Deserializer<T> deserialize, ExposeMode exposeMode) {
+        return of(name, deserialize, Object::toString, exposeMode);
     }
 
-    public static <T> Property<T> of(String name, Deserialiser<T> deserialise, Serialiser<T> serialise, ExposeMode exposeMode) {
-        return new Property<>(name, deserialise, serialise, exposeMode);
+    public static <T> Property<T> of(String name, Deserializer<T> deserialize, Serializer<T> serialize, ExposeMode exposeMode) {
+        return new Property<>(name, deserialize, serialize, exposeMode);
     }
 
     public static Property<String> string(String name) {

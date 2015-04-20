@@ -18,13 +18,22 @@ public class Configuration {
         this.settings = settings;
     }
 
+    /**
+     * Retrieve a property value which has been deserialized from it's string form
+     * @param Property definition to retrieve
+     * @tparam Type of the parameter
+     * @return The deserialized parameter as an instance of the correct type
+     */
     public <T> T valueOf(Property<T> prop) {
         if (!settings.containsKey(prop)) {
             throw new Misconfiguration("Unknown configuration key '" + prop.name + "'");
         }
-        return prop.deserialise.deserialise(settings.get(prop));
+        return prop.deserialize.deserialize(settings.get(prop));
     }
 
+    /**
+     * Public representation of the the settings
+     */
     public Map<String, String> settings() {
         return settings.keySet().stream().collect(toMap(
                 property -> property.name,
