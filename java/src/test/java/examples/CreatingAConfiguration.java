@@ -14,23 +14,6 @@ import static java.lang.Integer.parseInt;
 
 public class CreatingAConfiguration {
 
-    /*
-
-// simple wrapper type which self describes the wrapper
-case class Title(value: String) {
-  override def toString = value
-}
-
-// wrapper with requiring custom serialization/deserialization
-case class Duration(seconds: Int) {
-  def describe = seconds + ""
-}
-
-object Duration {
-  def apply(value: String): Duration = Duration(parseInt(value.replace("", "")))
-}
-
-     */
     public static void main(String[] args) {
         Property<String> USER = Property.string("USER");
         Property<Integer> AGE = Property.integer("AGE");
