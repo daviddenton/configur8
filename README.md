@@ -14,10 +14,21 @@ Assuming that the reification process is successful, property values can be retr
 3. Default value
 
 ###Get it:
-Add the following dependency to ```build.sbt```:
+Currently, the library is published in both Java and Scala versions in JCenter (and synced to Maven Central).
+
+####Maven:
+```XML
+<dependency>
+  <groupId>io.github.daviddenton</groupId>
+  <artifactId>configur8</artifactId>
+  <version>1.1.1</version>
+</dependency>
+```
+
+####SBT:
 ```scala
-libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.0"
+libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.1"
 ```
 
 ###See it:
-See the [example code](https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples).
+See the example code in [scala](https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples) or [java](https://github.com/daviddenton/configur8/tree/master/java/src/test/java/examples).
