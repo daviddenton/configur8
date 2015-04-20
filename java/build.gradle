@@ -69,7 +69,7 @@ bintray {
     key = project.bintrayKey
 
     publications = ['mavenJava']
-    dryRun = true
+    dryRun = false
     publish = true
     pkg {
         repo = 'maven'
