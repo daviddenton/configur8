@@ -67,72 +67,42 @@ public class Property<T> {
         return new Property<>(name, deserialize, serialize, exposeMode);
     }
 
-    /**
-     * Pre-configured String Property
-     */
     public static Property<String> string(String name) {
         return string(name, ExposeMode.Public);
     }
 
-    /**
-     * Pre-configured String Property
-     */
     public static Property<String> string(String name, ExposeMode exposeMode) {
         return new Property<>(name, String::new, s -> s, exposeMode);
     }
 
-    /**
-     * Pre-configured Int Property
-     */
     public static Property<Integer> integer(String name) {
         return integer(name, ExposeMode.Public);
     }
 
-    /**
-     * Pre-configured Int Property
-     */
     public static Property<Integer> integer(String name, ExposeMode exposeMode) {
         return new Property<>(name, Integer::parseInt, Object::toString, exposeMode);
     }
 
-    /**
-     * Pre-configured Long Property
-     */
     public static Property<Long> aLong(String name) {
         return aLong(name, ExposeMode.Public);
     }
 
-    /**
-     * Pre-configured Long Property
-     */
     public static Property<Long> aLong(String name, ExposeMode exposeMode) {
         return new Property<>(name, Long::parseLong, Object::toString, exposeMode);
     }
 
-    /**
-     * Pre-configured Boolean Property
-     */
     public static Property<Boolean> bool(String name) {
         return bool(name, ExposeMode.Public);
     }
 
-    /**
-     * Pre-configured Boolean Property
-     */
     public static Property<Boolean> bool(String name, ExposeMode exposeMode) {
         return new Property<>(name, Boolean::parseBoolean, Object::toString, exposeMode);
     }
 
-    /**
-     * Pre-configured Char Property
-     */
     public static Property<Character> character(String name) {
         return character(name, ExposeMode.Public);
     }
 
-    /**
-     * Pre-configured Char Property
-     */
     public static Property<Character> character(String name, ExposeMode exposeMode) {
         return new Property<>(name, (in) -> in.charAt(0), Object::toString, exposeMode);
     }

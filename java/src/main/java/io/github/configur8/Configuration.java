@@ -27,6 +27,7 @@ public class Configuration {
 
     /**
      * Public representation of the the settings
+     * @return settings
      */
     public Map<String, String> settings() {
         return settings.keySet().stream().collect(toMap(
