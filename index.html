@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
     <title>Configur8 by daviddenton</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+    <section class="page-header">
+      <h1 class="project-name">Configur8</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/daviddenton/configur8" class="btn">View on GitHub</a>
+      <a href="https://github.com/daviddenton/configur8/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/daviddenton/configur8/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <header>
-          <h1>Configur8</h1>
-          <h2></h2>
-        </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/daviddenton/configur8/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/daviddenton/configur8/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/daviddenton/configur8" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h1>
+    <section class="main-content">
+      <h1>
 <a id="configur8-------" class="anchor" href="#configur8-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configur8 <a href="https://travis-ci.org/daviddenton/configur8"><img src="https://travis-ci.org/daviddenton/configur8.svg" alt="Build Status"></a> <a href="https://coveralls.io/r/daviddenton/configur8?branch=master"><img src="https://coveralls.io/repos/daviddenton/configur8/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://bintray.com/daviddenton/maven/configur8/_latestVersion"><img src="https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg" alt="Download"> </a> <a href="https://bintray.com/daviddenton/maven/configur8/view?source=watch"> <img src="https://www.bintray.com/docs/images/bintray_badge_color.png" alt="Watch"> </a>
 </h1>
 
@@ -54,23 +42,36 @@ Each defined Property can be set with a default value, or be blank with a requir
 <h3>
 <a id="get-it" class="anchor" href="#get-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it:</h3>
 
-<p>Add the following dependency to <code>build.sbt</code>:</p>
+<p>Currently, the library is published in both Java and Scala versions in JCenter (and synced to Maven Central).</p>
 
-<div class="highlight highlight-scala"><pre>libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>io.github.daviddenton<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s1"><span class="pl-pds">"</span>configur8<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s1"><span class="pl-pds">"</span>1.1.0<span class="pl-pds">"</span></span></pre></div>
+<h4>
+<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven:</h4>
+
+<div class="highlight highlight-XML"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+  &lt;<span class="pl-ent">groupId</span>&gt;io.github.daviddenton&lt;/<span class="pl-ent">groupId</span>&gt;
+  &lt;<span class="pl-ent">artifactId</span>&gt;configur8&lt;/<span class="pl-ent">artifactId</span>&gt;
+  &lt;<span class="pl-ent">version</span>&gt;1.1.1&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<h4>
+<a id="sbt" class="anchor" href="#sbt" aria-hidden="true"><span class="octicon octicon-link"></span></a>SBT:</h4>
+
+<div class="highlight highlight-scala"><pre>libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>io.github.daviddenton<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>configur8<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.1.1<span class="pl-pds">"</span></span></pre></div>
 
 <h3>
 <a id="see-it" class="anchor" href="#see-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>See it:</h3>
 
-<p>See the <a href="https://github.com/daviddenton/configur8/tree/master/src/test/scala/examples">example code</a>.</p>
-        </section>
+<p>See the example code in <a href="https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples">scala</a> or <a href="https://github.com/daviddenton/configur8/tree/master/java/src/test/java/examples">java</a>.</p>
 
-        <footer>
-          Configur8 is maintained by <a href="https://github.com/daviddenton">daviddenton</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/daviddenton/configur8">Configur8</a> is maintained by <a href="https://github.com/daviddenton">daviddenton</a>.</span>
 
-        
-      </div>
-    </div>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
+
