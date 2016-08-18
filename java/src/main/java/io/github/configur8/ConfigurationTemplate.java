@@ -24,7 +24,7 @@ public class ConfigurationTemplate {
      * @return A copy of the template with the new property value set
      */
     public <T> ConfigurationTemplate withProp(Property<T> prop, T value) {
-        settings.put(prop, value::toString);
+        settings.put(prop, () -> prop.serialize.serialize(value));
         return this;
     }
 

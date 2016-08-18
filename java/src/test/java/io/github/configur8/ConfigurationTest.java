@@ -42,6 +42,18 @@ public class ConfigurationTest {
     }
 
     @Test
+    public void canSerialiseAndDeserialiseDefaultValue() throws Exception {
+        Property<Integer> doubler = Property.of("doubler", Integer::parseInt, new Serializer<Integer>() {
+            @Override
+            public String serialize(Integer value) {
+                return String.valueOf(value + value);
+            }
+        });
+        Configuration configuration = configurationTemplate().withProp(doubler, 100).reify();
+        assertThat(configuration.valueOf(doubler), equalTo(200));
+    }
+
+    @Test
     public void usesEnvironmentValueInPreferenceToASystemProperty() throws Exception {
         System.setProperty(envProperty.name, "NOTTHEENVUSER");
         Configuration configuration = configurationTemplate().requiring(envProperty).reify();
