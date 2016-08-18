@@ -6,7 +6,7 @@ git tag
 git push origin $1
 
 cd java
-./publish $1
+./publish.sh $1
 
 cd ..
 
