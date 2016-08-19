@@ -8,7 +8,7 @@ enum class ExposeMode {
      * Displays input value. Use for public property values
      */
     Public {
-        override fun display(value: kotlin.String) = value
+        override fun display(value: String) = value
     },
 
     /**
