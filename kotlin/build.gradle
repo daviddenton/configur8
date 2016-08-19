@@ -45,7 +45,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 version = project.hasProperty('releaseVersion') ? project.releaseVersion : 'LOCAL'
 group = 'io.github.daviddenton'
 
-description = ''
+description = 'Nano-library which provides the ability to define typesafe (!) configuration templates for applications.'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
