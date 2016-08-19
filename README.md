@@ -14,20 +14,30 @@ Assuming that the reification process is successful, property values can be retr
 3. Default value
 
 ###Get it:
-Currently, the library is published in both Java and Scala versions in JCenter (and synced to Maven Central).
+Currently, the library is published in Java, Kotlin and Scala versions in JCenter (and synced to Maven Central).
 
 ####Maven:
+Java:
 ```XML
 <dependency>
   <groupId>io.github.daviddenton</groupId>
   <artifactId>configur8</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.3</version>
+</dependency>
+```
+
+Kotlin:
+```XML
+<dependency>
+  <groupId>io.github.daviddenton</groupId>
+  <artifactId>konfigur8</artifactId>
+  <version>1.1.3</version>
 </dependency>
 ```
 
 ####SBT:
 ```scala
-libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.1"
+libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.3"
 ```
 
 ###See it:
