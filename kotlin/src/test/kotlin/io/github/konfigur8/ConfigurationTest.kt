@@ -18,7 +18,7 @@ class ConfigurationTest {
             ConfigurationTemplate().reify().valueOf(string("MISSING"))
             fail("expected exception")
         } catch(e: Misconfiguration) {
-            assertThat(e.message, equalTo("Unknown configuration key 'MISSING'"))
+            assertThat(e.message!!, equalTo("Unknown configuration key 'MISSING'"))
         }
     }
 
@@ -60,7 +60,7 @@ class ConfigurationTest {
             ConfigurationTemplate().requiring(userProperty).reify()
             fail("expected exception")
         } catch(e: Misconfiguration) {
-            assertThat(e.message, equalTo("No value supplied for key 'bob'"))
+            assertThat(e.message!!, equalTo("No value supplied for key 'bob'"))
         }
     }
 
