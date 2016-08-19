@@ -20,7 +20,7 @@ public class CreatingAConfiguration {
         Property<Title> TITLE = Property.of("TITLE", Title::title);
         Property<String> PASSWORD = Property.string("PASSWORD", ExposeMode.Private);
         Property<String> RUNTIME = Property.string("java.runtime.version");
-        Property<Duration> PATIENCE_LEVEL = Property.of("DURATION", (String i) -> duration(parseInt(i)), Duration::describe);
+        Property<Duration> PATIENCE_LEVEL = Property.of("DURATION", (String i) -> duration(i), Duration::describe);
         Property<String> UNKNOWN = Property.string("UNKNOWN");
 
         ConfigurationTemplate configTemplate = configurationTemplate()
