@@ -20,13 +20,13 @@
 
     <section class="main-content">
       <h1>
-<a id="configur8-------" class="anchor" href="#configur8-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configur8 <a href="https://travis-ci.org/daviddenton/configur8"><img src="https://travis-ci.org/daviddenton/configur8.svg" alt="Build Status"></a> <a href="https://coveralls.io/r/daviddenton/configur8?branch=master"><img src="https://coveralls.io/repos/daviddenton/configur8/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://bintray.com/daviddenton/maven/configur8/_latestVersion"><img src="https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg" alt="Download"> </a> <a href="https://bintray.com/daviddenton/maven/configur8/view?source=watch"> <img src="https://www.bintray.com/docs/images/bintray_badge_color.png" alt="Watch"> </a>
+<a id="configur8-------" class="anchor" href="#configur8-------" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configur8 <a href="https://travis-ci.org/daviddenton/configur8"><img src="https://api.travis-ci.org/daviddenton/configur8.svg" alt="Build Status"></a> <a href="https://coveralls.io/r/daviddenton/configur8?branch=master"><img src="https://coveralls.io/repos/daviddenton/configur8/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://bintray.com/daviddenton/maven/configur8/_latestVersion"><img src="https://api.bintray.com/packages/daviddenton/maven/configur8/images/download.svg" alt="Download"> </a> <a href="https://bintray.com/daviddenton/maven/configur8/view?source=watch"> <img src="https://www.bintray.com/docs/images/bintray_badge_color.png" alt="Watch"> </a>
 </h1>
 
 <p>Nano-library which provides the ability to define typesafe (!) Configuration templates for applications.</p>
 
 <h3>
-<a id="concept" class="anchor" href="#concept" aria-hidden="true"><span class="octicon octicon-link"></span></a>Concept:</h3>
+<a id="concept" class="anchor" href="#concept" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Concept:</h3>
 
 <p>A <code>Configuration</code> is a set of named and typed <code>Property</code> instances, which are defined using a  <code>ConfigurationTemplate</code>.
 Each defined Property can be set with a default value, or be blank with a requirement to be overridden. At runtime, the template is <code>reified</code> into a concrete <code>Configuration</code> object, but if any properties are missing this process will throw a <code>Misconfiguration</code> error.</p>
@@ -40,26 +40,36 @@ Each defined Property can be set with a default value, or be blank with a requir
 </ol>
 
 <h3>
-<a id="get-it" class="anchor" href="#get-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it:</h3>
+<a id="get-it" class="anchor" href="#get-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get it:</h3>
 
-<p>Currently, the library is published in both Java and Scala versions in JCenter (and synced to Maven Central).</p>
+<p>Currently, the library is published in Java, Kotlin and Scala versions in JCenter (and synced to Maven Central).</p>
 
 <h4>
-<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven:</h4>
+<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven:</h4>
+
+<p>Java:</p>
 
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
   &lt;<span class="pl-ent">groupId</span>&gt;io.github.daviddenton&lt;/<span class="pl-ent">groupId</span>&gt;
   &lt;<span class="pl-ent">artifactId</span>&gt;configur8&lt;/<span class="pl-ent">artifactId</span>&gt;
-  &lt;<span class="pl-ent">version</span>&gt;1.1.1&lt;/<span class="pl-ent">version</span>&gt;
+  &lt;<span class="pl-ent">version</span>&gt;1.1.3&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<p>Kotlin:</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+  &lt;<span class="pl-ent">groupId</span>&gt;io.github.daviddenton&lt;/<span class="pl-ent">groupId</span>&gt;
+  &lt;<span class="pl-ent">artifactId</span>&gt;konfigur8&lt;/<span class="pl-ent">artifactId</span>&gt;
+  &lt;<span class="pl-ent">version</span>&gt;1.1.3&lt;/<span class="pl-ent">version</span>&gt;
 &lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
 
 <h4>
-<a id="sbt" class="anchor" href="#sbt" aria-hidden="true"><span class="octicon octicon-link"></span></a>SBT:</h4>
+<a id="sbt" class="anchor" href="#sbt" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SBT:</h4>
 
-<div class="highlight highlight-source-scala"><pre>libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>io.github.daviddenton<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>configur8<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.1.1<span class="pl-pds">"</span></span></pre></div>
+<div class="highlight highlight-source-scala"><pre>libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>io.github.daviddenton<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>configur8<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.1.3<span class="pl-pds">"</span></span></pre></div>
 
 <h3>
-<a id="see-it" class="anchor" href="#see-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>See it:</h3>
+<a id="see-it" class="anchor" href="#see-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>See it:</h3>
 
 <p>See the example code in <a href="https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples">scala</a> or <a href="https://github.com/daviddenton/configur8/tree/master/java/src/test/java/examples">java</a>.</p>
 
