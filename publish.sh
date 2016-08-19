@@ -10,6 +10,11 @@ cd java
 
 cd ..
 
+cd kotlin
+./publish.sh $1
+
+cd ..
+
 cd scala
 ./publish.sh $1
 
