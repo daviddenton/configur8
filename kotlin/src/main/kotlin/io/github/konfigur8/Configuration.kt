@@ -8,12 +8,9 @@ class Configuration internal constructor(private val settings: Map<Property<*>, 
      * @param  type
      * @return value of the property
      */
-    fun <T> valueOf(prop: Property<T>): T {
-        if (!settings.containsKey(prop)) {
-            throw Misconfiguration("Unknown configuration key '" + prop.name + "'")
-        }
-        return prop.deserialize(settings[prop].orEmpty())
-    }
+    fun <T> valueOf(prop: Property<T>) = prop.deserialize(
+            settings.getOrElse(prop, { throw Misconfiguration("Unknown configuration key '" + prop.name + "'") })
+    )
 
     /**
      * Public representation of the the settings
