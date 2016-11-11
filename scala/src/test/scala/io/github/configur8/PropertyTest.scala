@@ -1,8 +1,8 @@
 package io.github.configur8
 
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.{FunSpec, Matchers}
 
-class PropertyTest extends FunSpec with ShouldMatchers {
+class PropertyTest extends FunSpec with Matchers {
 
   case class Standard(value: Int) {
     override def toString: String = value.toString
@@ -24,10 +24,10 @@ class PropertyTest extends FunSpec with ShouldMatchers {
   private def itAdheresToStandardTests[T](name: String, prop: Property[T], testValue: T) = {
     describe(name) {
       it("round-tripping to string and back supported") {
-        prop.deserialize(prop.serialize(testValue)) should be === testValue
+        prop.deserialize(prop.serialize(testValue)) shouldBe testValue
       }
       it("toString is just the name") {
-        prop.toString should be === "name"
+        prop.toString shouldBe "name"
       }
     }
   }

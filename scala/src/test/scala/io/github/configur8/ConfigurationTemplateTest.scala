@@ -1,9 +1,9 @@
 package io.github.configur8
 
 import io.github.configur8.Property._
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.{FunSpec, Matchers}
 
-class ConfigurationTemplateTest extends FunSpec with ShouldMatchers {
+class ConfigurationTemplateTest extends FunSpec with Matchers {
 
   private val intProperty = integer("anInteger")
 

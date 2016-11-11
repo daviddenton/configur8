@@ -13,7 +13,7 @@ scalaVersion := "2.11.5"
 
 crossScalaVersions := Seq("2.10.4", "2.11.5")
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 
 licenses +=("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0"))
 
