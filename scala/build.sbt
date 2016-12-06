@@ -9,9 +9,9 @@ name := projectName
 
 description := "Nano-library which provides the ability to define typesafe (!) Configuration templates for applications"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.11.8"
 
-crossScalaVersions := Seq("2.10.4", "2.11.5", "2.12.0")
+crossScalaVersions := Seq("2.10.4", "2.11.8", "2.12.0")
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 
