@@ -2,6 +2,7 @@ package io.github.konfigur8
 
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
+import io.github.konfigur8.Property.Companion.int
 import io.github.konfigur8.Property.Companion.string
 import org.junit.Test
 import kotlin.test.fail
@@ -71,4 +72,16 @@ class ConfigurationTest {
         val settings = ConfigurationTemplate().withProp(privateProperty, "VALUE").reify().settings()
         assertThat(settings, equalTo(mapOf(privateProperty.name to "***********")))
     }
+
+    @Test
+    fun iteratesOverStringProperties() {
+        val privateProperty = string("private password", ExposeMode.Private)
+        val intProperty = int("number of things")
+        val properties = ConfigurationTemplate().withProp(privateProperty, "shhhh").withProp(intProperty,123).reify()
+
+        val list: List<Property<*>> = properties.toList()
+        val expected: List<Property<*>> = listOf(privateProperty, intProperty)
+        assertThat(list,equalTo(expected))
+    }
+
 }
