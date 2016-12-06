@@ -3,5 +3,5 @@ scala:
     - 2.10.4
     - 2.11.5
 script:
-    - "cd scala && sbt clean coverage test && cd .."
-    - "cd scala && ln -s ../.git .git && sbt coveralls && cd .."
+    - "cd scala && sbt clean test && cd .."
+    - "cd scala && ln -s ../.git .git && cd .."
