@@ -17,5 +17,23 @@ class ConfigurationTemplateTest extends FunSpec with Matchers {
     it("reification successful when all values supplied") {
       ConfigurationTemplate().requiring(intProperty).withProp(intProperty, 1).reify()
     }
+
+    it("requiring props is immutable") {
+      val original = ConfigurationTemplate().requiring(intProperty)
+      val updated = original.withProp(intProperty, 1)
+
+      updated.reify().valueOf(intProperty) shouldBe 1
+      intercept[Misconfiguration] {
+        original.reify()
+      }
+    }
+
+    it("with props is immutable") {
+      val original = ConfigurationTemplate().withProp(intProperty, 1)
+      val updated = original.withProp(intProperty, 2)
+
+      original.reify().valueOf(intProperty) shouldBe 1
+      updated.reify().valueOf(intProperty) shouldBe 2
+    }
   }
 }
