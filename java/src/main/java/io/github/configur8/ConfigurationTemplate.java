@@ -1,20 +1,24 @@
 package io.github.configur8;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Supplier;
-
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toMap;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Supplier;
+
 /**
  * Unreified, immutable template for a Configuration object.
  */
 public class ConfigurationTemplate {
-    private final Map<Property<?>, Supplier<String>> settings = new HashMap<>();
+    private final Map<Property<?>, Supplier<String>> settings;
+
+    private ConfigurationTemplate(Map<Property<?>, Supplier<String>> settings) {
+        this.settings = settings;
+    }
 
     /**
      * Set a default or overridden property value to use in the reified Configuration
@@ -24,8 +28,7 @@ public class ConfigurationTemplate {
      * @return A copy of the template with the new property value set
      */
     public <T> ConfigurationTemplate withProp(Property<T> prop, T value) {
-        settings.put(prop, () -> prop.serialize.serialize(value));
-        return this;
+        return new ConfigurationTemplate(putProperty(prop, () -> prop.serialize.serialize(value)));
     }
 
     /**
@@ -35,10 +38,9 @@ public class ConfigurationTemplate {
      * @return A copy of the template with the new abstract property
      */
     public <T> ConfigurationTemplate requiring(Property<T> prop) {
-        settings.put(prop, () -> {
+        return new ConfigurationTemplate(putProperty(prop, () -> {
             throw new Misconfiguration("No value supplied for key '" + prop.name + "'");
-        });
-        return this;
+        }));
     }
 
     /**
@@ -46,7 +48,7 @@ public class ConfigurationTemplate {
      * @return An empty template
      */
     public static ConfigurationTemplate configurationTemplate() {
-        return new ConfigurationTemplate();
+        return new ConfigurationTemplate(new HashMap<>());
     }
 
     /**
@@ -64,5 +66,11 @@ public class ConfigurationTemplate {
         Optional<Supplier<String>> envValue = ofNullable(getenv(property.name)).map((s) -> () -> s);
         Optional<Supplier<String>> sysPropValue = ofNullable(getProperty(property.name)).map((s) -> () -> s);
         return envValue.orElse(sysPropValue.orElse(settings.get(property))).get();
+    }
+
+    private <T> Map<Property<?>, Supplier<String>> putProperty(Property<T> prop, Supplier<String> stringSupplier) {
+        HashMap<Property<?>, Supplier<String>> newSettings = new HashMap<>(settings);
+        newSettings.put(prop, stringSupplier);
+        return newSettings;
     }
 }
