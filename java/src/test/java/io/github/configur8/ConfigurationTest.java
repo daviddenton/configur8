@@ -34,11 +34,9 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void usesSystemPropertyValueInPreferenceToDefault() throws Exception {
-        Property<String> someSystemProperty = Property.string("bilbo");
-        System.setProperty(someSystemProperty.name, "NOTTHEENVUSER");
-        Configuration configuration = configurationTemplate().requiring(someSystemProperty).reify();
-        assertThat(configuration.valueOf(someSystemProperty), equalTo(System.getProperty(someSystemProperty.name)));
+    public void usesEnvironmentValueInPreferenceToDefault() throws Exception {
+        Configuration configuration = configurationTemplate().requiring(envProperty).reify();
+        assertThat(configuration.valueOf(envProperty), equalTo(System.getenv(envProperty.name)));
     }
 
     @Test
@@ -54,10 +52,10 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void usesEnvironmentValueInPreferenceToASystemProperty() throws Exception {
+    public void usesSystemPropertyValueInPreferenceToAnEnvironmentValue() throws Exception {
         System.setProperty(envProperty.name, "NOTTHEENVUSER");
         Configuration configuration = configurationTemplate().requiring(envProperty).reify();
-        assertThat(configuration.valueOf(envProperty), equalTo(System.getenv(envProperty.name)));
+        assertThat(configuration.valueOf(envProperty), equalTo("NOTTHEENVUSER"));
     }
 
     @Test

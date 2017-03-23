@@ -1,14 +1,14 @@
 package io.github.configur8;
 
-import static java.lang.System.getProperty;
-import static java.lang.System.getenv;
-import static java.util.Optional.ofNullable;
-import static java.util.stream.Collectors.toMap;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
+
+import static java.lang.System.getProperty;
+import static java.lang.System.getenv;
+import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Unreified, immutable template for a Configuration object.
@@ -63,9 +63,9 @@ public class ConfigurationTemplate {
     }
 
     private String reifiedValueFor(Property<?> property) {
-        Optional<Supplier<String>> envValue = ofNullable(getenv(property.name)).map((s) -> () -> s);
         Optional<Supplier<String>> sysPropValue = ofNullable(getProperty(property.name)).map((s) -> () -> s);
-        return envValue.orElse(sysPropValue.orElse(settings.get(property))).get();
+        Optional<Supplier<String>> envValue = ofNullable(getenv(property.name)).map((s) -> () -> s);
+        return sysPropValue.orElse(envValue.orElse(settings.get(property))).get();
     }
 
     private <T> Map<Property<?>, Supplier<String>> putProperty(Property<T> prop, Supplier<String> stringSupplier) {

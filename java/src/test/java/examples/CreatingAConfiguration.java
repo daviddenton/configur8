@@ -7,10 +7,8 @@ import io.github.configur8.Property;
 
 import java.util.function.Supplier;
 
-import static examples.Duration.duration;
 import static examples.Title.title;
 import static io.github.configur8.ConfigurationTemplate.configurationTemplate;
-import static java.lang.Integer.parseInt;
 
 public class CreatingAConfiguration {
 
@@ -20,7 +18,7 @@ public class CreatingAConfiguration {
         Property<Title> TITLE = Property.of("TITLE", Title::title);
         Property<String> PASSWORD = Property.string("PASSWORD", ExposeMode.Private);
         Property<String> RUNTIME = Property.string("java.runtime.version");
-        Property<Duration> PATIENCE_LEVEL = Property.of("DURATION", (String i) -> duration(i), Duration::describe);
+        Property<Duration> PATIENCE_LEVEL = Property.of("DURATION", Duration::duration, Duration::describe);
         Property<String> UNKNOWN = Property.string("UNKNOWN");
 
         ConfigurationTemplate configTemplate = configurationTemplate()
