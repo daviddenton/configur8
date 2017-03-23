@@ -38,9 +38,9 @@ data class ConfigurationTemplate(val settings: Map<Property<*>, () -> String> = 
     fun reify(): Configuration = Configuration(settings.map { it.key to reifiedValueFor(it.key) }.toMap())
 
     private fun reifiedValueFor(property: Property<*>): String {
-        val envValue = getenv(property.name)
         val sysPropValue = getProperty(property.name)
-        return envValue ?: sysPropValue ?: settings[property]?.invoke() ?: throw Misconfiguration("No value supplied for key '" + property.name + "'")
+        val envValue = getenv(property.name)
+        return sysPropValue ?: envValue ?: settings[property]?.invoke() ?: throw Misconfiguration("No value supplied for key '" + property.name + "'")
     }
 
 }

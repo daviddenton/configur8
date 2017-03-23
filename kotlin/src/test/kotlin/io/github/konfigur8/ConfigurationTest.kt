@@ -33,11 +33,10 @@ class ConfigurationTest {
 
     @Test
     @Throws(Exception::class)
-    fun usesSystemPropertyValueInPreferenceToDefault() {
-        val someSystemProperty = string("bilbo")
-        System.setProperty(someSystemProperty.name, "NOTTHEENVUSER")
-        val configuration = ConfigurationTemplate().requiring(someSystemProperty).reify()
-        assertThat(configuration.valueOf(someSystemProperty), equalTo(System.getProperty(someSystemProperty.name)))
+    fun usesEnvironmentValueInPreferenceToDefault() {
+        val configuration = ConfigurationTemplate().requiring(envProperty).reify()
+        assertThat(configuration.valueOf(envProperty), equalTo(System.getenv(envProperty.name)))
+        assertThat(configuration[envProperty], equalTo(System.getenv(envProperty.name)))
     }
 
     @Test
@@ -51,10 +50,11 @@ class ConfigurationTest {
 
     @Test
     @Throws(Exception::class)
-    fun usesEnvironmentValueInPreferenceToASystemProperty() {
+    fun usesSystemPropertyValueInPreferenceToAEnvironmentValue() {
         System.setProperty(envProperty.name, "NOTTHEENVUSER")
         val configuration = ConfigurationTemplate().requiring(envProperty).reify()
-        assertThat(configuration.valueOf(envProperty), equalTo(System.getenv(envProperty.name)))
+        assertThat(configuration.valueOf(envProperty), equalTo("NOTTHEENVUSER"))
+        assertThat(configuration[envProperty], equalTo("NOTTHEENVUSER"))
     }
 
     @Test
