@@ -9,8 +9,8 @@ Each defined Property can be set with a default value, or be blank with a requir
 
 Assuming that the reification process is successful, property values can be retrieved in an (actually) type-safe manner, and are applied in the following descending order of precedence:
 
-1. Named environment property
-2. JVM system property
+1. JVM system property
+2. Named environment property
 3. Default value
 
 ###Get it:
@@ -22,7 +22,7 @@ Java:
 <dependency>
   <groupId>io.github.daviddenton</groupId>
   <artifactId>configur8</artifactId>
-  <version>1.1.3</version>
+  <version>1.7.0</version>
 </dependency>
 ```
 
@@ -31,13 +31,13 @@ Kotlin:
 <dependency>
   <groupId>io.github.daviddenton</groupId>
   <artifactId>konfigur8</artifactId>
-  <version>1.1.3</version>
+  <version>1.7.0</version>
 </dependency>
 ```
 
 ####SBT:
 ```scala
-libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.1.3"
+libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.7.0"
 ```
 
 ###See it:
