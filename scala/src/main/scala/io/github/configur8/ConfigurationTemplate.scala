@@ -11,7 +11,7 @@ case class ConfigurationTemplate private(private val settings: Map[Property[_], 
 
   private def defaultFor(prop: Property[_]): String = settings(prop)()
 
-  private def reify(prop: Property[_]): (Property[_], String) = (prop, Properties.envOrNone(prop.name).getOrElse(Properties.propOrNone(prop.name).getOrElse(defaultFor(prop))))
+  private def reify(prop: Property[_]): (Property[_], String) = (prop, Properties.propOrNone(prop.name).getOrElse(Properties.envOrNone(prop.name).getOrElse(defaultFor(prop))))
 
   /**
    * Set a default or overridden property value to use in the reified Configuration

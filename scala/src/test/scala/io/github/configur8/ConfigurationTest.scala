@@ -35,15 +35,15 @@ class ConfigurationTest extends FunSpec with Matchers {
         ConfigurationTemplate().withProp(intProperty, 999).reify().valueOf(intProperty) shouldBe 999
       }
 
-      it("uses environment value in preference to system property") {
-        val systemProperty = string("USER")
-        ConfigurationTemplate().withProp(systemProperty, "default").reify().valueOf(systemProperty) shouldBe System.getenv(systemProperty.name)
+      it("uses system property in preference to an environment value") {
+        val envProperty = string("USER")
+        System.setProperty("USER", "value")
+        ConfigurationTemplate().withProp(envProperty, "default").reify().valueOf(envProperty) shouldBe "value"
       }
 
-      it("uses property value in preference to the default") {
-        val property = string("A_PROP")
-        System.setProperty(property.name, "value")
-        ConfigurationTemplate().withProp(property, "default").reify().valueOf(property) shouldBe System.getProperty(property.name)
+      it("uses environment value in preference to the default") {
+        val property = string("HOME")
+        ConfigurationTemplate().withProp(property, "default").reify().valueOf(property) shouldBe System.getenv(property.name)
       }
 
       it("can define properties with user defined type") {
