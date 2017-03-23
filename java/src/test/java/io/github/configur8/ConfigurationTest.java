@@ -41,12 +41,7 @@ public class ConfigurationTest {
 
     @Test
     public void canSerialiseAndDeserialiseDefaultValue() throws Exception {
-        Property<Integer> doubler = Property.of("doubler", Integer::parseInt, new Serializer<Integer>() {
-            @Override
-            public String serialize(Integer value) {
-                return String.valueOf(value + value);
-            }
-        });
+        Property<Integer> doubler = Property.of("doubler", Integer::parseInt, (Serializer<Integer>) value -> String.valueOf(value + value));
         Configuration configuration = configurationTemplate().withProp(doubler, 100).reify();
         assertThat(configuration.valueOf(doubler), equalTo(200));
     }
