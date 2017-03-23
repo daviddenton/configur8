@@ -28,6 +28,7 @@ class ConfigurationTest {
     fun usesDefaultValueIfNoOverride() {
         val configuration = ConfigurationTemplate().withProp(userProperty, "bill").reify()
         assertThat(configuration.valueOf(userProperty), equalTo("bill"))
+        assertThat(configuration[userProperty], equalTo("bill"))
     }
 
     @Test
@@ -45,6 +46,7 @@ class ConfigurationTest {
         val doubler = Property("doubler", { it.toInt() }, { (it * 2).toString() })
         val configuration = ConfigurationTemplate().withProp(doubler, 100).reify()
         assertThat(configuration.valueOf(doubler), equalTo(200))
+        assertThat(configuration[doubler], equalTo(200))
     }
 
     @Test

@@ -12,6 +12,15 @@ class Configuration internal constructor(private val settings: Map<Property<*>, 
     )
 
     /**
+     * Retrieve a property value which has been deserialized from it's string form
+     * @param prop the property to retrieve the value for
+     * @return value of the property
+     */
+    operator fun <T> get(prop: Property<T>) = prop.deserialize(
+            settings.getOrElse(prop, { throw Misconfiguration("Unknown configuration key '" + prop.name + "'") })
+    )
+
+    /**
      * Public representation of the the settings
      * @return settings described as a map with private values hidden
      */
