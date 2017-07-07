@@ -26,9 +26,8 @@ val PATIENCE_LEVEL = Property("DURATION", { i: String -> Duration.parse(i) }, { 
 // build your template
 val configTemplate = ConfigurationTemplate()
       .requiring(USER) // will be supplied by the environment
-      .withProp(AGE, 2) // falls back to a default value
-      .withProp(USER, "mario") // falls back to a default value
-      .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property with default
+      .withProp(AGE, 2) // falls back to a default typed value
+      .withProp(PATIENCE_LEVEL, Duration(10)) // custom typed property with default
 
 // attempting to build a configuration with missing values will fail with a Misconfiguration exception
 val config = configTemplate.reify()
