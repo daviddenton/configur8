@@ -30,7 +30,7 @@ val configTemplate = ConfigurationTemplate()
       .withProp(USER, "mario") // falls back to a default value
       .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property with default
 
-// attempting to build a configuration with missing values will generated
+// attempting to build a configuration with missing values will fail with a Misconfiguration exception
 val config = configTemplate.reify()
 
 // retrieval of values in a typesafe way
