@@ -13,10 +13,10 @@ Assuming that the reification process is successful, property values can be retr
 2. Named environment property
 3. Default value
 
-###Get it:
+### Get it:
 Currently, the library is published in Java, Kotlin and Scala versions in JCenter (and synced to Maven Central).
 
-####Maven:
+#### Maven:
 Java:
 ```XML
 <dependency>
