@@ -13,6 +13,30 @@ Assuming that the reification process is successful, property values can be retr
 2. Named environment property
 3. Default value
 
+### Quick example
+This is from the Kotlin version, but the Scala and Java APIs are broadly the same:
+```kotlin
+// simple typed values
+val USER = Property.string("USER")
+val AGE = Property.int("AGE")
+
+// provide custom mapping functions to convert from strings to domain
+val PATIENCE_LEVEL = Property("DURATION", { i: String -> Duration.parse(i) }, { it.describe() })
+
+// build your template
+val configTemplate = ConfigurationTemplate()
+      .requiring(USER) // will be supplied by the environment
+      .withProp(AGE, 2) // falls back to a default value
+      .withProp(USER, "mario") // falls back to a default value
+      .withProp(PATIENCE_LEVEL, Duration(10)) // custom type property with default
+
+// attempting to build a configuration with missing values will generated
+val config = configTemplate.reify()
+
+// retrieval of values in a typesafe way
+val patience: Duration = config.valueOf[PATIENCE_LEVEL]
+```
+
 ### Get it:
 Currently, the library is published in Java, Kotlin and Scala versions in JCenter (and synced to Maven Central).
 
