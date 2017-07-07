@@ -3,7 +3,7 @@ Configur8 [![Build Status](https://api.travis-ci.org/daviddenton/configur8.svg)]
 
 Nano-library which provides the ability to define typesafe (!) Configuration templates for applications.
 
-###Concept:
+### Concept:
 A ```Configuration``` is a set of named and typed ```Property``` instances, which are defined using a  ```ConfigurationTemplate```.
 Each defined Property can be set with a default value, or be blank with a requirement to be overridden. At runtime, the template is ```reified``` into a concrete ```Configuration``` object, but if any properties are missing this process will throw a ```Misconfiguration``` error.
 
@@ -35,10 +35,10 @@ Kotlin:
 </dependency>
 ```
 
-####SBT:
+#### SBT:
 ```scala
 libraryDependencies += "io.github.daviddenton" %% "configur8" % "1.7.0"
 ```
 
-###See it:
-See the example code in [scala](https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples) or [java](https://github.com/daviddenton/configur8/tree/master/java/src/test/java/examples).
+### See it:
+See the example code in [scala](https://github.com/daviddenton/configur8/tree/master/scala/src/test/scala/examples) or [java](https://github.com/daviddenton/configur8/tree/master/java/src/test/java/examples) or [kotlin](https://github.com/daviddenton/configur8/tree/master/kotlin/src/test/kotlin/examples)
