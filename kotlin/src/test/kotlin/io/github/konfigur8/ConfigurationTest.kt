@@ -86,4 +86,29 @@ class ConfigurationTest {
         assertThat(list,equalTo(expected))
     }
 
+    @Test
+    fun takesPropFromMap() {
+        val config = ConfigurationTemplate().requiring(userProperty)
+        val configMap = mapOf(userProperty.name to "eliza")
+
+        assertThat(config.reifyFrom(configMap).valueOf(userProperty), equalTo("eliza"))
+    }
+
+    @Test
+    fun blowsUpWhenPropIsMissingInMap() {
+        try {
+            ConfigurationTemplate().requiring(userProperty).reifyFrom(emptyMap())
+            fail("expected exception")
+        } catch(e: Misconfiguration) {
+            assertThat(e.message!!, equalTo("No value supplied for key 'bob'"))
+        }
+    }
+
+    @Test
+    fun fallsBackToDefaultWhenPropIsMissingInMap() {
+        val config = ConfigurationTemplate().withProp(userProperty, "eliza")
+
+        assertThat(config.reifyFrom(emptyMap()).valueOf(userProperty), equalTo("eliza"))
+    }
+
 }
