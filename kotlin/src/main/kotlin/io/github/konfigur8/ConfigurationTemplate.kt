@@ -7,7 +7,7 @@ import java.lang.System.getenv
 /**
  * Unreified, immutable template for a Configuration object.
  */
-data class ConfigurationTemplate(val settings: Map<Property<*>, () -> String> = mapOf<Property<*>, () -> String>()) {
+data class ConfigurationTemplate(val settings: Map<Property<*>, () -> String> = mapOf()) {
     /**
      * Set a default or overridden property value to use in the reified Configuration
      * @param prop definition
@@ -37,10 +37,21 @@ data class ConfigurationTemplate(val settings: Map<Property<*>, () -> String> = 
      */
     fun reify(): Configuration = Configuration(settings.map { it.key to reifiedValueFor(it.key) }.toMap())
 
+    /**
+     * Convert the template into a concrete Configuration object from the given map instead of the environment. If any
+     * values are missing, a Misconfiguration will be thrown
+     * @return The complete Configuration object
+     */
+    fun reifyFrom(map: Map<String, String>) = Configuration(settings.map { it.key to map.getReifiedValueFor(it.key) }.toMap())
+
     private fun reifiedValueFor(property: Property<*>): String {
         val sysPropValue = getProperty(property.name)
         val envValue = getenv(property.name)
         return sysPropValue ?: envValue ?: settings[property]?.invoke() ?: throw Misconfiguration("No value supplied for key '" + property.name + "'")
+    }
+
+    private fun Map<String, String>.getReifiedValueFor(property: Property<*>): String {
+        return this[property.name] ?: settings[property]?.invoke() ?: throw Misconfiguration("No value supplied for key '" + property.name + "'")
     }
 
 }
