@@ -9,16 +9,17 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.6"
-        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.3.1'
+        classpath 'net.saliman:gradle-cobertura-plugin:2.5.4'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
         classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.+'
     }
 }
 
 plugins {
-    id "com.jfrog.bintray" version "1.7.3"
-    id 'net.saliman.cobertura' version '2.2.5'
-    id 'com.github.kt3k.coveralls' version '2.0.1'
+    id "com.jfrog.bintray" version "1.8.4"
+    id 'net.saliman.cobertura' version '2.5.4'
+    id 'com.github.kt3k.coveralls' version '2.8.2'
+    id 'jmfayard.github.io.gradle-kotlin-dsl-libs' version "0.2.6"
 }
 
 repositories {
