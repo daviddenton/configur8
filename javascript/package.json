@@ -1,0 +1,19 @@
+{
+  "name": "configur8js",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.10.4",
+    "jest": "^24.1.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "3.3.3"
+  }
+}
