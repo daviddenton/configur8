@@ -1,6 +1,6 @@
 {
   "name": "configur8js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "Apache 2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --outFile dist/index.js",
     "test": "jest",
     "prepublish": "yarn run test && yarn run build"
   },
