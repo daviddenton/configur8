@@ -18,3 +18,9 @@ cd ..
 cd scala
 ./publish.sh $1
 
+cd ..
+
+cd javascript
+
+./publish.sh $1
+
