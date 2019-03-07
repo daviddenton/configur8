@@ -1,12 +1,21 @@
 {
   "name": "configur8js",
-  "version": "1.8.0",
+  "version": "0.0.2",
   "license": "Apache 2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/daviddenton/configur8/tree/master/javascript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daviddenton/configur8.git"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "yarn run test && yarn run build"
   },
   "dependencies": {},
   "devDependencies": {
