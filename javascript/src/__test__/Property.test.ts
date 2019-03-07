@@ -1,5 +1,4 @@
-import {Property} from "../Property";
-import {ConfigurationTemplate} from "../ConfigurationTemplate";
+import {ConfigurationTemplate, Property} from "../index";
 
 describe('Property', function () {
     it("correctly deserializes integer", () => {

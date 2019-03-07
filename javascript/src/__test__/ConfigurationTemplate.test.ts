@@ -1,7 +1,4 @@
-import {Property} from "../Property";
-import {ConfigurationTemplate} from "../ConfigurationTemplate";
-import {NoValueSupplied} from "../Errors";
-
+import {ConfigurationTemplate, NoValueSupplied, Property} from "../index";
 
 describe("ConfigurationTemplate", () => {
     it("is immutable", () => {

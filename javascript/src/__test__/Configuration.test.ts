@@ -1,7 +1,4 @@
-import {Property} from "../Property";
-import {Configuration} from "../Configuration";
-import {UnknownKey} from "../Errors";
-import {ConfigurationTemplate} from "../ConfigurationTemplate";
+import {Configuration, ConfigurationTemplate, Property, UnknownKey} from "../index";
 
 describe("Configuration", () => {
     it("throws an exception when key is not in configuration", () => {
